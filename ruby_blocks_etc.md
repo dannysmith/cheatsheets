@@ -2,7 +2,7 @@
 
 Given some similar code like this, we shuould notice that both methods are very similar:
 
-```
+```ruby
 def update_status(user, tweet)
   sign_in(user)
   post(tweet)
@@ -24,7 +24,7 @@ end
 
  Only one line is different. This should signal that we could just pass that line as a block. Let's create a new method, replacing that line with `yield`:
 
-```
+```ruby
 def while_signed_in_as(user)
   sign_in(user)
   yield
@@ -44,7 +44,7 @@ Note that we only need to include `yeild` in a method to signal that it accepts 
 
 Here's another example. Assume we have the following code:
 
-```
+```ruby
 class Timeline
   def list_tweets
     @user.friends.each do |friend|
@@ -61,7 +61,7 @@ end
 
 Again, only one line differs: the action inside the inner block. We can abstract this and create our own method. Let's follow convention, and call it `each`:
 
-```
+```ruby
 class Timeline
   def each
     @user.friends.each do |friend|
@@ -73,7 +73,7 @@ end
 
 Note that we're yielding the tweet to the block. this makes it available to the block as a variable (without this, we wouldn't be able to use it as `my_tweet`):
 
-```
+```ruby
 timeline.each {|my_tweet| puts my_tweet}
 timeline.each {|my_tweet| my_tweet.cache}
 ```

@@ -4,7 +4,7 @@
 We can use modules as namespaces for methods.
 We can use them after rquiring the module.
 
-````
+````ruby
 module ImageUtils
   def self.perview(image)
   end
@@ -22,7 +22,7 @@ ImageUtils.preview(image)
 We can also include the module in a class.
 This makes them available as INSTANCE methods on the class
 
-````
+````ruby
 module ImageUtils
   def self.perview
   end
@@ -43,7 +43,7 @@ image.preview
 
 If we use extend instead, the methods are available as CLASS methods:
 
-````
+````ruby
 module Listable
   def show_as_list
   end
@@ -60,7 +60,7 @@ Tweet.show_as_list
 
 If we want to extend the instance methods of one object only, we can call the `extend` method:
 
-````
+````ruby
 class Image; end
 
 module ImageUtils
@@ -79,7 +79,7 @@ This is particularly useful when overriding the default behaviour of built-in cl
 
 If we create a module with a submodule containing the class methods, we can include one and extend the other:
 
-````
+````ruby
 module ImageUtils
   def preview
   end
@@ -101,7 +101,7 @@ image.preview
 
 There is, however, a better way to do this by using method hooks. The `self.included` hook is run whenever this module is included in a class. It recieves the name of that class as its argument. In this case, we are using that to call the extend method on.
 
-````
+````ruby
 module ImageUtils
 
   def self.included(base)
@@ -126,7 +126,7 @@ end
 
 If we add a new class method, and have it called whenever the module is included in a class:
 
-````
+````ruby
 module ImageUtils
 
   def self.included(base)
@@ -153,7 +153,7 @@ end
 
 We can clean this up by using an ActiveSupport concern:
 
-````
+````ruby
 require 'active_support/concern'
 module ImageUtils
 

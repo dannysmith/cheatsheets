@@ -2,9 +2,9 @@
 
 Pry is awesome. Here are some of the commands available within it. PResuming I have an object called `s` of type string:
 
-````
+````ruby
 show-doc s.downcase # Show the docs for String#downcase
-show-doc String#downcase # Same as ^
+show-doc String #downcase # Same as ^
 show-method s.downcase # Show the method definition.
 show-method s.swapcase -l # Use line numbers
 ````
