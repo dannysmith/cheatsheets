@@ -178,8 +178,6 @@ docker run -d --name website --link dbms:db ubuntu:latest tomcat
 The second line creates a container called "website" which is linked to the dbms container. If we go into the `/etc/hosts` file on the second container, we'll see an entry mapping the IP address of the dbms container to "db". We can use `db` inside the website container to refer to the dmbs container.
 
 
-
-
 ## Running Docker on OSX
 
 Docker uses core KErnal features of Linux to run, so we have to use an VM when on OSX. If we've installed the Toolbelt, we'll have the `docker-machine` tool available for this:
@@ -189,3 +187,26 @@ docker-machine ls # view list of available VMs. Ours is called "default".
 docker-machine env default # get the environment variables for a given VM
 eval "$(docker-machine env default)" # Configure the environment
 ```
+
+## Using Docker Machine
+
+As well as creating virtualbox VMs on OSX, docker-machine can also provision on clound providers like AWS and DigitalOcean.
+
+To create a host, we can use the create command:
+
+```bash
+docker-machine create --driver virtualbox testhost # Create a virtualbox VM
+docker-machine create --driver digitalocean --digitalocean-access-token xxx --digitalocean-size 2gb testhost
+```
+
+We can ssh into a machine with ssh if we need to:
+
+```bash
+docker-machine ssh testhost
+```
+
+## Using Docker Swarm
+
+It's a tool that clusters Docker hosts and schedules containers.
+
+
